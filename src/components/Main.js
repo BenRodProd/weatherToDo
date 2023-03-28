@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import ToDoInput from "./ToDoInput";
-import ShowTodoList from "./ShowTodoList";
+import Header from "./Header";
 export default function Main() {
-  const [temperature, setTemperature] = useState();
-  const [weather, setWeather] = useState();
-  const [toDoList, setToDoList] = useLocalStorage("todos", {default=""})
+  const [temperature, setTemperature] = useState(0);
+  const [weather, setWeather] = useState(false);
+
   let weatherHtml;
+
   async function fetchWeather() {
     try {
       const response = await fetch(
         "https://example-apis.vercel.app/api/weather"
       );
       const data = await response.json();
-      console.log(data);
+
       setTemperature(data.temperature);
       setWeather(data.isGoodWeather);
     } catch (error) {
@@ -21,11 +22,10 @@ export default function Main() {
   }
   useEffect(() => {
     const checkWeather = setInterval(fetchWeather, 3000);
-    // fetchWeather();
+
     return () => clearInterval(checkWeather);
   }, []);
 
-  console.log(temperature, weather);
   if (weather) {
     weatherHtml = "The weather is good";
   } else {
@@ -33,6 +33,7 @@ export default function Main() {
   }
   return (
     <>
+      <Header weather={weather} />
       <div className={weather ? "imageDiv good" : "imageDiv bad"}>
         <div className="temperature">
           <p>{temperature}°C</p>
@@ -40,8 +41,8 @@ export default function Main() {
         <div className="isGoodWeather">
           <p>{weatherHtml}</p>
         </div>
-        <ShowTodoList />
-        <ToDoInput />
+
+        <ToDoInput weather={weather} />
       </div>
     </>
   );

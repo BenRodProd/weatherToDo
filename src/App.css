@@ -6,8 +6,9 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-
-  margin: auto;
+  background-color: darkblue;
+  margin: 0;
+  padding: 0;
   overflow-y: hidden;
   flex-wrap: nowrap;
 }
@@ -49,10 +50,12 @@
 .good {
   background-image: url(./images/sun.jpg);
   background-size: cover;
+  color: lightgrey;
 }
 .bad {
   background-image: url(./images/rain.jpg);
   background-size: cover;
+  color: white;
 }
 .imageDiv {
   display: flexbox;
@@ -84,4 +87,26 @@
   display: inline-block;
   position: relative;
   justify-content: center;
+}
+.ToDoList {
+  text-align: center;
+  list-style: none;
+  background: rgba(255, 255, 255, 0.197);
+  height: 240px;
+  width: 250px;
+  margin: auto;
+  overflow-y: scroll;
+  justify-content: center;
+}
+.header {
+  margin: 0;
+  padding: 0;
+}
+li:hover {
+  color: red;
+}
+li {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  filter: drop-shadow(5px 1px 10px #000000);
 }
