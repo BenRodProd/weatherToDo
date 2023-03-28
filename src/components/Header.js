@@ -1,3 +1,7 @@
 export default function Header() {
-  return <h1>I'll tell you weather to do it!</h1>;
+  return (
+    <div className="header">
+      <h1>I'll tell you weather to do it!</h1>
+    </div>
+  );
 }
